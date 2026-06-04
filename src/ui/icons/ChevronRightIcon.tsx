@@ -1,0 +1,14 @@
+import React from 'react';
+
+interface IconProps {
+    className?: string;
+}
+
+export const ChevronRightIcon: React.FC<IconProps> = ({ className }) => (
+    <svg
+        className={className}
+        width="52" height="52" viewBox="0 0 52 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="1" width="50" height="50" rx="25" stroke="currentColor" stroke-width="2" />
+        <path d="M20 16L31.0582 24.7544C31.5481 25.1423 31.5663 25.8795 31.096 26.291L20 36" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+    </svg>
+);

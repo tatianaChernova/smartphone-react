@@ -1,0 +1,308 @@
+{
+  "banners": [
+    {
+      "title": "Умная колонка",
+      "subtitle1": "СКИДКА 30%",
+      "subtitle2": "при покупке второго товара",
+      "image": "/images/banner-1.webp"
+    },
+    {
+      "title": "Суперцены",
+      "subtitle1": "на все ноутбуки",
+      "subtitle2": "",
+      "image": "/images/banner-2.webp"
+    },
+    {
+      "title": "Умная колонка",
+      "subtitle1": "СКИДКА 30%",
+      "subtitle2": "при покупке второго товара",
+      "image": "/images/banner-1.webp"
+    },
+    {
+      "title": "Суперцены",
+      "subtitle1": "на все ноутбуки",
+      "subtitle2": "",
+      "image": "/images/banner-2.webp"
+    },
+    {
+      "title": "Умная колонка",
+      "subtitle1": "СКИДКА 30%",
+      "subtitle2": "при покупке второго товара",
+      "image": "/images/banner-1.webp"
+    },
+    {
+      "title": "Суперцены",
+      "subtitle1": "на все ноутбуки",
+      "subtitle2": "",
+      "image": "/images/banner-2.webp"
+    }
+  ],
+  "categories": [
+    { "id": 1, "name": "Смартфоны", "image": "/images/category/1.webp" },
+    { "id": 2, "name": "Ноутбуки", "image": "/images/category/2.webp" },
+    { "id": 3, "name": "Компьютеры", "image": "/images/category/3.webp" },
+    { "id": 4, "name": "Телевизоры", "image": "/images/category/4.webp" },
+    { "id": 5, "name": "Планшеты", "image": "/images/category/5.webp" },
+    { "id": 6, "name": "Колонки", "image": "/images/category/6.webp" }
+  ],
+  "products": [
+    {
+      "id": 1,
+      "categoryId": 1,
+      "name": "Смартфон Apple iPhone 14 128GB",
+      "images": ["/images/product/1.webp", "/images/product/1.webp"],
+      "price": 84999,
+      "oldPrice": 87999,
+      "inStock": true,
+      "attributes": {
+        "brand": "Apple",
+        "ram": 2,
+        "cores": 6,
+        "storage": 128,
+        "screenSize": 6.1
+      }
+    },
+    {
+      "id": 2,
+      "categoryId": 1,
+      "name": "Смартфон Apple",
+      "images": ["/images/product/2.webp", "/images/product/2.webp"],
+      "price": 42980,
+      "oldPrice": 47756,
+      "inStock": true,
+      "attributes": {
+        "brand": "Apple",
+        "ram": 1,
+        "cores": 8,
+        "storage": 64,
+        "screenSize": 6.2
+      }
+    },
+    {
+      "id": 3,
+      "categoryId": 1,
+      "name": "Смартфон HUAWEI nova Y61",
+      "images": [
+        "/images/product/3.webp",
+        "/images/product/3.webp",
+        "/images/product/3.webp"
+      ],
+      "price": 11999,
+      "inStock": false,
+      "attributes": {
+        "brand": "HUAWEI",
+        "ram": 1.5,
+        "cores": 8,
+        "storage": 128,
+        "screenSize": 6.2
+      }
+    },
+    {
+      "id": 4,
+      "categoryId": 1,
+      "name": "Смартфон Xiaomi Redmi 128GB",
+      "images": ["/images/product/4.webp", "/images/product/4.webp"],
+      "price": 17665,
+      "oldPrice": 19000,
+      "inStock": true,
+      "attributes": {
+        "brand": "Xiaomi",
+        "ram": 1,
+        "cores": 8,
+        "storage": 128,
+        "screenSize": 6.2
+      }
+    },
+    {
+      "id": 5,
+      "categoryId": 1,
+      "name": "Смартфон Apple iPhone 14 128GB",
+      "images": ["/images/product/5.webp", "/images/product/5.webp"],
+      "price": 75999,
+
+      "inStock": true,
+      "attributes": {
+        "brand": "Apple",
+        "ram": 2,
+        "cores": 8,
+        "storage": 128,
+        "screenSize": 6.2
+      }
+    },
+    {
+      "id": 6,
+      "categoryId": 1,
+      "name": "Смартфон HUAWEI nova Y61",
+      "images": ["/images/product/3.webp", "/images/product/3.webp"],
+      "price": 11999,
+      "oldPrice": 14117,
+      "inStock": false,
+      "attributes": {
+        "brand": "HUAWEI",
+        "ram": 1.5,
+        "cores": 8,
+        "storage": 128,
+        "screenSize": 6.2
+      }
+    },
+    {
+      "id": 7,
+      "categoryId": 1,
+      "name": "Смартфон Apple iPhone 14 128GB",
+      "images": ["/images/product/1.webp", "/images/product/1.webp"],
+      "price": 84999,
+      "oldPrice": 87999,
+      "inStock": true,
+      "attributes": {
+        "brand": "Apple",
+        "ram": 1,
+        "cores": 8,
+        "storage": 128,
+        "screenSize": 6.2
+      }
+    },
+    {
+      "id": 8,
+      "categoryId": 1,
+      "name": "Смартфон Apple iPhone 12 64GB",
+      "images": ["/images/product/2.webp", "/images/product/2.webp"],
+      "price": 42980,
+      "oldPrice": 47756,
+      "inStock": true,
+      "attributes": {
+        "brand": "Apple",
+        "ram": 2,
+        "cores": 4,
+        "storage": 64,
+        "screenSize": 6.2
+      }
+    },
+    {
+      "id": 9,
+      "categoryId": 1,
+      "name": "Смартфон HUAWEI nova Y61",
+      "images": ["/images/product/3.webp", "/images/product/3.webp"],
+      "price": 11999,
+      "oldPrice": 14117,
+      "inStock": false,
+      "attributes": {
+        "brand": "HUAWEI",
+        "ram": 1,
+        "cores": 8,
+        "storage": 128,
+        "screenSize": 6.2
+      }
+    },
+    {
+      "id": 10,
+      "categoryId": 1,
+      "name": "Смартфон Xiaomi Redmi 128GB",
+      "images": ["/images/product/4.webp", "/images/product/4.webp"],
+      "price": 17665,
+      "inStock": true,
+      "attributes": {
+        "brand": "Xiaomi",
+        "ram": 2,
+        "cores": 8,
+        "storage": 256,
+        "screenSize": 6.2
+      }
+    },
+    {
+      "id": 11,
+      "categoryId": 1,
+      "name": "Смартфон Apple iPhone 14 256GB",
+      "images": ["/images/product/5.webp", "/images/product/5.webp"],
+      "price": 75999,
+      "oldPrice": 79999,
+      "inStock": true,
+      "attributes": {
+        "brand": "Apple",
+        "ram": 1.5,
+        "cores": 8,
+        "storage": 256,
+        "screenSize": 6.2
+      }
+    },
+    {
+      "id": 12,
+      "categoryId": 1,
+      "name": "Смартфон HUAWEI nova Y61",
+      "images": ["/images/product/3.webp", "/images/product/3.webp"],
+      "price": 11999,
+      "oldPrice": 14117,
+      "inStock": false,
+      "attributes": {
+        "brand": "HUAWEI",
+        "ram": 2,
+        "cores": 8,
+        "storage": 256,
+        "screenSize": 6.2
+      }
+    },
+    {
+      "id": 13,
+      "categoryId": 2,
+      "name": "MacBook Air",
+      "images": ["/images/product/6.webp", "/images/product/6.webp"],
+      "price": 84999,
+      "oldPrice": 87999,
+      "inStock": true,
+      "attributes": {
+        "brand": "Apple",
+        "ram": 2,
+        "cores": 6,
+        "storage": 128,
+        "screenSize": 11
+      }
+    },
+    {
+      "id": 14,
+      "categoryId": 2,
+      "name": "MacBook Air",
+      "images": ["/images/product/7.webp", "/images/product/7.webp"],
+      "price": 42980,
+      "oldPrice": 47756,
+      "inStock": true,
+      "attributes": {
+        "brand": "Apple",
+        "ram": 1,
+        "cores": 8,
+        "storage": 256,
+        "screenSize": 13
+      }
+    },
+    {
+      "id": 15,
+      "categoryId": 2,
+      "name": "MacBook Air",
+      "images": ["/images/product/6.webp", "/images/product/6.webp"],
+      "price": 42980,
+      "oldPrice": 47756,
+      "inStock": true,
+      "attributes": {
+        "brand": "Apple",
+        "ram": 1,
+        "cores": 8,
+        "storage": 256,
+        "screenSize": 13
+      }
+    },
+    {
+      "id": 16,
+      "categoryId": 2,
+      "name": "MacBook Air",
+      "images": ["/images/product/7.webp", "/images/product/7.webp"],
+      "price": 42980,
+      "oldPrice": 47756,
+      "inStock": true,
+      "attributes": {
+        "brand": "Apple",
+        "ram": 1,
+        "cores": 8,
+        "storage": 256,
+        "screenSize": 13
+      }
+    }
+  ]
+}

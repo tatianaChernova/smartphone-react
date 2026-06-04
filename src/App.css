@@ -1,0 +1,98 @@
+.container {
+  max-width: 1312px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+section {
+  padding: 20px 0;
+}
+
+.banner {
+  padding-top: 40px;
+  padding-bottom: 15px;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+.swiper-slide {
+  height: auto !important;
+}
+
+.product-image-swiper .swiper-wrapper {
+  padding-bottom: 36px;
+}
+
+.product-image-swiper .swiper-pagination-bullet {
+  width: 12px;
+  height: 12px;
+  border: 0.5px solid var(--color-custom-light);
+  background: #ffffff;
+  opacity: 1;
+}
+
+.product-image-swiper .swiper-pagination-bullet.swiper-pagination-bullet-active {
+  background: var(--color-custom-primary);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+@media (max-width: 1280px) {
+  .promo .swiper {
+    width: calc(100% + 32px);
+    left: -16px;
+  }
+}
+
+@media (max-width: 768px) {
+  section {
+    padding: 20px 0;
+  }
+
+  .product-image-swiper .swiper-wrapper {
+    padding-bottom: 30px;
+  }
+  .promo .swiper {
+    width: calc(100% + 16px);
+    left: 0;
+  }
+  .banner .swiper {
+    width: calc(100% + 32px);
+    left: -16px;
+  }
+}
