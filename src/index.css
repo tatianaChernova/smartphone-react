@@ -37,7 +37,7 @@
   --color-custom-dark: #0C0C0C;
   --color-custom-light: #C1C1C1;
   --color-custom-grey:#ABABAB;
-   --color-custom-dark-grey:#454545;
+  --color-custom-dark-grey:#454545;
 }
 
 :root {
@@ -142,7 +142,7 @@ input[type=search]::-webkit-search-results-decoration {
 }
 
 button {
-  border: none;
+  /* border: none; */
   cursor: pointer;
   -webkit-appearance: none;
   -moz-appearance: none;

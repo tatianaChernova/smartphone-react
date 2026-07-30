@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
 import 'swiper/css';
@@ -22,6 +23,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, view = 'grid'
         return (
             <div className="px-0 py-6 md:p-6 w-full flex justify-between items-start flex-wrap md:flex-nowrap gap-5 md:gap-6 group cursor-pointer border-t border-custom-accent">
                 {/* Слайдер изображений */}
+
                 <div className="relative w-25 md:w-42">
                     {discount && (
                         <div className="absolute top-0 right-0 bg-custom-tertiary text-lg px-2 py-1 z-4 rounded-lg">
@@ -34,14 +36,17 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, view = 'grid'
                         className="product-image-swiper"
                     >
                         {product.images.map((img, i) => (
+
                             <SwiperSlide key={i}>
-                                <div className="w-full h-35 md:h-54 flex items-center justify-center">
-                                    <img
-                                        src={img}
-                                        alt={product.name}
-                                        className="object-contain h-full rounded-lg"
-                                    />
-                                </div>
+                                <Link to={`/product/${product.id}`}>
+                                    <div className="w-full h-35 md:h-54 flex items-center justify-center">
+                                        <img
+                                            src={img}
+                                            alt={product.name}
+                                            className="object-contain h-full rounded-lg"
+                                        />
+                                    </div>
+                                </Link>
                             </SwiperSlide>
                         ))}
                     </Swiper>
@@ -50,9 +55,11 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, view = 'grid'
                 {/* Инфо */}
                 <div className="flex-1">
                     {/* Наименование товара */}
-                    <div className="mb-3 text-xl leading-8">
-                        {product.name}
-                    </div>
+                    <Link to={`/product/${product.id}`}>
+                        <div className="mb-3 text-xl leading-8">
+                            {product.name}
+                        </div>
+                    </Link>
                     {/* Характеристики (только в списке) */}
                     <div className="mb-0 md:mb-5 flex flex-col text-sm text-custom-dark-grey">
                         {product.attributes?.screenSize && (
@@ -133,22 +140,26 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, view = 'grid'
                     >
                         {product.images.map((img, i) => (
                             <SwiperSlide key={i}>
-                                <div className="w-full h-30 md:h-54 flex items-center justify-center ">
-                                    <img
-                                        src={img}
-                                        alt={product.name}
-                                        className="object-contain h-full rounded-lg"
-                                    />
-                                </div>
+                                <Link to={`/product/${product.id}`}>
+                                    <div className="w-full h-30 md:h-54 flex items-center justify-center ">
+                                        <img
+                                            src={img}
+                                            alt={product.name}
+                                            className="object-contain h-full rounded-lg"
+                                        />
+                                    </div>
+                                </Link>
                             </SwiperSlide>
                         ))}
                     </Swiper>
                 </div>
 
                 {/* Инфо */}
-                <div className="mt-2 text-base md:text-xl leading-6 md:leading-8 line-clamp-2 min-h-12">
-                    {product.name}
-                </div>
+                <Link to={`/product/${product.id}`}>
+                    <div className="mt-2 text-base md:text-xl leading-6 md:leading-8 line-clamp-2 min-h-12">
+                        {product.name}
+                    </div>
+                </Link>
                 <div className="mt-auto">
                     {/* Цены*/}
 

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 
 import type { ProductItem } from "../types/product";
@@ -126,7 +126,11 @@ const CategoryPage: React.FC = () => {
                 <div className="container">
                     {/* Хлебные крошки */}
                     <div className="text-sm text-gray-500 mb-6">
-                        Главная / <span className="text-black">{isGeneralCatalog ? 'Каталог' : currentCategory?.name}</span>
+                        <Link to="/" className="hover:text-gray-700">
+                            Главная
+                        </Link>
+                        {" / "}
+                        <span className="text-black">{isGeneralCatalog ? 'Каталог' : currentCategory?.name}</span>
                     </div>
                     <div className="mb-8 flex items-center gap-5">
                         {!isGeneralCatalog && (
@@ -303,7 +307,7 @@ const CategoryPage: React.FC = () => {
 
                         {/* Сетка товаров*/}
                         <div className={view === 'grid'
-                            ? "relative grid grid-cols-2 lg:grid-cols-4 gap-y-4 lg:gap-y-0 gap-x-4"
+                            ? "relative grid grid-cols-2 items-start lg:grid-cols-4 gap-y-4 lg:gap-y-0 gap-x-4"
                             : "w-full flex flex-col"
                         }>
                             {filteredProducts.length === 0 ? (

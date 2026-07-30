@@ -87,10 +87,12 @@ section {
   .product-image-swiper .swiper-wrapper {
     padding-bottom: 30px;
   }
+
   .promo .swiper {
     width: calc(100% + 16px);
     left: 0;
   }
+
   .banner .swiper {
     width: calc(100% + 32px);
     left: -16px;
