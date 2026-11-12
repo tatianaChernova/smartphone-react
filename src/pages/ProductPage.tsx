@@ -13,6 +13,7 @@ import { formatPrice } from "../utils/formatPrice";
 
 import { BackIcon } from "../ui/icons/BackIcon";
 import { FavoriteButton } from "../components/FavoriteButton";
+import { AddToCartButton } from "../components/product/AddToCartButton";
 
 const ProductPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -21,7 +22,7 @@ const ProductPage: React.FC = () => {
     const [product, setProduct] = useState<ProductItem | null>(null);
     const [loading, setLoading] = useState(true);
     const [selectedColor, setSelectedColor] = useState<ProductColor | null>(null);
- 
+
     useEffect(() => {
         getProducts().then((data) => {
             const currentProduct = data.find(
@@ -29,6 +30,7 @@ const ProductPage: React.FC = () => {
             );
 
             setProduct(currentProduct || null);
+            setSelectedColor(currentProduct?.colors?.[0] ?? null);
             setLoading(false);
         });
     }, [id]);
@@ -97,7 +99,7 @@ const ProductPage: React.FC = () => {
                                     -{discount}%
                                 </div>
                             )}
-                           <FavoriteButton productId={product.id} className="absolute top-1 right-1 z-10" />
+                            <FavoriteButton productId={product.id} className="absolute top-1 right-1 z-10" />
                             <Swiper
                                 modules={[Pagination]}
                                 pagination={{ clickable: true }}
@@ -208,11 +210,8 @@ const ProductPage: React.FC = () => {
                             <div className="text-2xl mb-7">
                                 {formatPrice(product.price)} ₽
                             </div>
-                            <button
-                                className="w-full py-2.5 rounded-lg text-white font-medium transition-colors duration-300 bg-custom-primary hover:bg-custom-secondary"
-                            >
-                                В корзину
-                            </button>
+
+                            <AddToCartButton product={product} colorValue={selectedColor?.value} className="w-full" />
                         </div>
                     </div>
                 </div>

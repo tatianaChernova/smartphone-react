@@ -7,10 +7,12 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 import type { ProductItem } from "../../types/product";
+import { FavoriteButton } from "../FavoriteButton";
+import { AddToCartButton } from "./AddToCartButton";
 
 import { formatPrice } from "../../utils/formatPrice";
 import { getDiscountPercent } from "../../utils/getDiscountPercent";
-import { FavoriteButton } from "../FavoriteButton";
+
 interface ProductCardProps {
     product: ProductItem;
     view?: 'grid' | 'list';
@@ -100,13 +102,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, view = 'grid'
                         {/* Избранное */}
                         <FavoriteButton productId={product.id} />
                         {/* Кнопка "Корзина" */}
-                        <button type="button" disabled={!product.inStock}
-                            className={`flex-1 py-2.5 rounded-lg text-white font-medium transition-colors duration-300 
-                                    ${product.inStock
-                                    ? 'bg-custom-primary hover:bg-custom-secondary'
-                                    : 'bg-custom-accent text-custom-dark-grey cursor-not-allowed'}`}>
-                            {product.inStock ? 'В корзину' : 'Под заказ'}
-                        </button>
+                        <AddToCartButton product={product} className="flex-1" />
                     </div>
                 </div>
             </div>
@@ -182,14 +178,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, view = 'grid'
                     </div>
 
                     {/* Кнопка "Корзина" */}
-                    <button type="button" disabled={!product.inStock}
-                        className={`mt-6 w-full py-2.5 rounded-lg text-white font-medium transition-colors duration-300 
-                    ${product.inStock
-                                ? 'bg-custom-primary hover:bg-custom-secondary'
-                                : 'bg-custom-accent text-custom-dark-grey cursor-not-allowed'}`}>
-                        {product.inStock ? 'В корзину' : 'Под заказ'}
-
-                    </button>
+                    <AddToCartButton product={product} className="mt-6 w-full" />
                 </div>
             </div >
         );

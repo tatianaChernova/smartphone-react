@@ -7,10 +7,11 @@ import { CartIcon } from '../ui/icons/CartIcon'
 import { ProfileIcon } from '../ui/icons/ProfileIcon';
 import { SearchIcon } from '../ui/icons/SearchIcon';
 import { HeartIcon } from '../ui/icons/HeartIcon';
-
+import { useCartStore } from "../store/cartStore";
 
 
 export default function Header() {
+    const cartCount = useCartStore((s) => s.items.reduce((sum, i) => sum + i.quantity, 0));
     return (
         <header className="pb-4 pt-15 px-0 xl:px-6 md:py-3.5 border-b border-custom-light">
             <div className="container">
@@ -60,7 +61,14 @@ export default function Header() {
                              ${isActive ? "text-custom-primary md:text-custom-dark-grey" : "text-custom-dark-grey"}`
                         }
                         >
-                            <CartIcon className="w-6 h-6" />
+                            <div className="relative">
+                                <CartIcon className="w-6 h-6" />
+                                {cartCount > 0 && (
+                                    <span className="absolute -top-2 -right-2.5 min-w-5 h-5 px-1 rounded-full bg-custom-secondary text-white text-xs leading-none flex items-center justify-center">
+                                        {cartCount}
+                                    </span>
+                                )}
+                            </div>
                             <span>Корзина</span>
                         </NavLink>
                         <NavLink to="/profile" className={({ isActive }) =>
