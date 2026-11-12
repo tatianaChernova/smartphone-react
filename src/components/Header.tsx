@@ -29,14 +29,14 @@ export default function Header() {
                             className="flex-1 px-4 py-2 bg-[#DEDEDE] text-gray-900 outline-none"
                         />
                     </div>
-                    <div className="px-7.5 py-5 fixed z-10 bottom-0 left-0 w-full bg-white border-t border-custom-light flex justify-between gap-3 md:p-0 md:static md:w-auto md:border-0 md:bg-transparent md:justify-start md:gap-5">
+                    <div className="h-24 md:h-auto px-4 py-4 sm:px-7.5 sm:py-5 fixed z-10 bottom-0 left-0 w-full bg-white border-t border-custom-light flex justify-between gap-1 sm:gap-2 md:p-0 md:static md:w-auto md:border-0 md:bg-transparent md:justify-start md:gap-5">
                         <NavLink
                             to="/" end className={({ isActive }) =>
                                 `flex flex-col items-center justify-center gap-1 transition
                                  ${isActive ? "text-custom-primary md:text-custom-dark-grey" : "text-custom-dark-grey"} md:hidden`
                             }>
-                            <HomeIcon className="w-6 h-6" />
-                            <span>Главная</span>
+                            <HomeIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+                            <span className="text-[13px] sm:text-[14px] md:text-[16px]">Главная</span>
                         </NavLink>
                         <NavLink
                             to="/catalog" className={({ isActive }) =>
@@ -44,8 +44,8 @@ export default function Header() {
                                 ${isActive ? "text-custom-primary md:text-custom-dark-grey" : "text-custom-dark-grey"}`
                             }
                         >
-                            <CatalogIcon className="w-6 h-6" />
-                            <span>Каталог</span>
+                            <CatalogIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+                            <span className="text-[13px] sm:text-[14px] md:text-[16px]">Каталог</span>
                         </NavLink>
                         <NavLink
                             to="/favorites" className={({ isActive }) =>
@@ -53,8 +53,8 @@ export default function Header() {
                                 ${isActive ? "text-custom-primary md:text-custom-dark-grey" : "text-custom-dark-grey"}`
                             }
                         >
-                            <HeartIcon className="w-6 h-6" />
-                            <span>Избранное</span>
+                            <HeartIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+                            <span className="text-[13px] sm:text-[14px] md:text-[16px]">Избранное</span>
                         </NavLink>
                         <NavLink to="/cart" className={({ isActive }) =>
                             `flex flex-col items-center justify-center gap-1 transition
@@ -62,22 +62,22 @@ export default function Header() {
                         }
                         >
                             <div className="relative">
-                                <CartIcon className="w-6 h-6" />
+                                <CartIcon className="w-5 h-5 sm:w-6 sm:h-6" />
                                 {cartCount > 0 && (
                                     <span className="absolute -top-2 -right-2.5 min-w-5 h-5 px-1 rounded-full bg-custom-secondary text-white text-xs leading-none flex items-center justify-center">
                                         {cartCount}
                                     </span>
                                 )}
                             </div>
-                            <span>Корзина</span>
+                            <span className="text-[13px] sm:text-[14px] md:text-[16px]">Корзина</span>
                         </NavLink>
                         <NavLink to="/profile" className={({ isActive }) =>
                             `flex flex-col items-center justify-center gap-1 transition
                              ${isActive ? "text-custom-primary md:text-custom-dark-grey" : "text-custom-dark-grey"}`
                         }
                         >
-                            <ProfileIcon className="w-6 h-6" />
-                            <span>Профиль</span>
+                            <ProfileIcon className="w-5 h-5 sm:w-6 sm:h-6" />
+                            <span className="text-[13px] sm:text-[14px] md:text-[16px]">Профиль</span>
                         </NavLink>
                     </div>
                 </div>

@@ -90,10 +90,9 @@ const ProductPage: React.FC = () => {
                         <span className="text-xl md:text-[32px]">Карточка товара</span>
                     </div>
 
-
-                    <div className="flex justify-between items-start gap-10">
+                    <div className="pb-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[26rem_minmax(0,1fr)_21rem] items-start gap-6 md:gap-10">
                         {/* Слайдер изображений */}
-                        <div className="relative shrink-0 max-w-103">
+                        <div className="relative min-w-0">
                             {discount && (
                                 <div className="absolute top-1 left-1 bg-custom-tertiary text-lg px-2 py-1 z-4 rounded-lg">
                                     -{discount}%
@@ -107,7 +106,7 @@ const ProductPage: React.FC = () => {
                             >
                                 {product.images.map((img, i) => (
                                     <SwiperSlide key={i}>
-                                        <div className="h-54 md:h-147 flex items-center justify-center">
+                                        <div className="h-64 sm:h-80 md:h-96 xl:h-147 flex items-center justify-center">
                                             <img
                                                 src={img}
                                                 alt={product.name}
@@ -120,14 +119,14 @@ const ProductPage: React.FC = () => {
                         </div>
 
                         {/* Информация */}
-                        <div className="max-w-90 w-full flex flex-col gap-5">
-                            <h1 className="text-3xl">
+                        <div className="min-w-0 w-full flex flex-col gap-5">
+                            <h1 className="text-xl md:text-3xl">
                                 {product.name}
                             </h1>
 
                             {product.colors?.length && (
                                 <div className="mb-3 flex flex-col gap-4">
-                                    <h3 className="text-[18px]">Цвет: {selectedColor?.name}</h3>
+                                    <h3 className="text-[16px] md:text-[18px]">Цвет: {selectedColor?.name}</h3>
 
                                     <div className="flex gap-5">
                                         {product.colors?.map((color) => (
@@ -142,10 +141,9 @@ const ProductPage: React.FC = () => {
                                 </div>
                             )}
 
+                            <h3 className="text-[16px] md:text-[18px]">Характеристики:</h3>
 
-                            <h3 className="text-[18px]">Характеристики:</h3>
-
-                            <dl className="space-y-3 mb-8">
+                            <dl className="space-y-3 mb-8 text-[14px] md:text-[18px] font-weight-300">
 
                                 {product.attributes?.brand && (
                                     <div className="flex items-end gap-2">
@@ -205,15 +203,20 @@ const ProductPage: React.FC = () => {
                             </dl>
                         </div>
 
-
-                        <div className="p-10 bg-[#E7E7ED] rounded-lg max-w-85 w-full">
-                            <div className="text-2xl mb-7">
+                        {/* Цена и кнопка */}
+                        <div className="fixed bottom-24 h-26 left-0 z-20 flex items-center justify-between gap-4 p-4 w-full bg-custom-bg border-t border-custom-light md:border-0 md:static md:h-[unset] xl:block md:p-10 md:col-span-2 xl:col-span-1 md:bg-[#E7E7ED] md:rounded-lg md:shadow-none">
+                            <div className="text-xl md:text-2xl mb-0 xl:mb-7 whitespace-nowrap">
                                 {formatPrice(product.price)} ₽
                             </div>
 
-                            <AddToCartButton product={product} colorValue={selectedColor?.value} className="w-full" />
+                            <AddToCartButton
+                                product={product}
+                                colorValue={selectedColor?.value}
+                                className="flex-1 max-w-100 md:w-full"
+                            />
                         </div>
                     </div>
+
                 </div>
             </section>
         </motion.div>

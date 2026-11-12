@@ -54,7 +54,7 @@ const CartPage: React.FC = () => {
                             <div className="text-center">
                                 В корзине пока ничего нет
                             </div>
-                            <Link to="/catalog" className="px-4 py-2.5 rounded-lg  font-medium transition-colors duration-300 bg-custom-primary text-white hover:bg-custom-secondary w-full sm:w-fit">Перейти в каталог</Link>
+                            <Link to="/catalog" className="px-4 py-2.5 rounded-lg font-medium transition-colors duration-300 bg-custom-primary text-white hover:bg-custom-secondary">Перейти в каталог</Link>
                         </div>
                     ) : (
                         <div className="flex flex-col lg:flex-row items-start gap-10">
@@ -65,14 +65,15 @@ const CartPage: React.FC = () => {
                                         key={`${product.id}-${colorValue ?? ""}`}
                                         className="py-6 flex gap-4 md:gap-6 border-t border-custom-accent"
                                     >
-                                        <Link to={`/product/${product.id}`} className="w-24 md:w-36 shrink-0">
+                                        <Link to={`/product/${product.id}`} className="w-24 md:w-36 shrink-0 relative">
                                             <img
                                                 src={product.images[0]}
                                                 alt={product.name}
                                                 className="w-full h-24 md:h-36 object-contain rounded-lg"
                                             />
+                                               <FavoriteButton productId={product.id} className="absolute top-0 left-0 z-10" />
                                         </Link>
-
+                                     
                                         <div className="flex-1 flex flex-col gap-2">
                                             <Link to={`/product/${product.id}`} className="text-base md:text-xl leading-6 md:leading-8">
                                                 {product.name}
@@ -98,7 +99,7 @@ const CartPage: React.FC = () => {
                                             </div>
 
                                             {/* Количество + избранное */}
-                                            <div className="mt-auto flex items-center gap-4">
+                                            <div className="mt-auto flex items-center gap-1 md:gap-4">
                                                 <div className="flex items-center w-fit rounded-lg border border-custom-accent">
                                                     <button
                                                         type="button"
@@ -118,8 +119,6 @@ const CartPage: React.FC = () => {
                                                         +
                                                     </button>
                                                 </div>
-
-                                                <FavoriteButton productId={product.id} />
                                             </div>
                                         </div>
 
