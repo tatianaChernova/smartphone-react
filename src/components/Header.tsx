@@ -6,6 +6,7 @@ import { CatalogIcon } from '../ui/icons/CatalogIcon'
 import { CartIcon } from '../ui/icons/CartIcon'
 import { ProfileIcon } from '../ui/icons/ProfileIcon';
 import { SearchIcon } from '../ui/icons/SearchIcon';
+import { HeartIcon } from '../ui/icons/HeartIcon';
 
 
 
@@ -19,7 +20,7 @@ export default function Header() {
                     </a>
                     <div className="w-full h-10 flex flex-1 items-center bg-[#DEDEDE] rounded-lg overflow-hidden">
                         <button className="pl-4">
-                            <SearchIcon className="w-5 h-5" />
+                            <SearchIcon className="w-5 h-5 color-[#454545]" />
                         </button>
                         <input
                             type="text"
@@ -44,6 +45,15 @@ export default function Header() {
                         >
                             <CatalogIcon className="w-6 h-6" />
                             <span>Каталог</span>
+                        </NavLink>
+                        <NavLink
+                            to="/favorites" className={({ isActive }) =>
+                                `flex flex-col items-center justify-center gap-1 transition
+                                ${isActive ? "text-custom-primary md:text-custom-dark-grey" : "text-custom-dark-grey"}`
+                            }
+                        >
+                            <HeartIcon className="w-6 h-6" />
+                            <span>Избранное</span>
                         </NavLink>
                         <NavLink to="/cart" className={({ isActive }) =>
                             `flex flex-col items-center justify-center gap-1 transition

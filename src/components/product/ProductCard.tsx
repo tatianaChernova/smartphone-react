@@ -6,12 +6,11 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import { HeartIcon } from "../../ui/icons/HeartIcon";
 import type { ProductItem } from "../../types/product";
 
 import { formatPrice } from "../../utils/formatPrice";
 import { getDiscountPercent } from "../../utils/getDiscountPercent";
-
+import { FavoriteButton } from "../FavoriteButton";
 interface ProductCardProps {
     product: ProductItem;
     view?: 'grid' | 'list';
@@ -99,9 +98,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, view = 'grid'
 
                     <div className="ml-auto md:ml-0 w-[calc(100%-120px)] md:w-66 flex items-center justify-end gap-4">
                         {/* Избранное */}
-                        <button type="button" className="w-11 h-11 flex items-center justify-center bg-custom-bg shadow-[1px_1px_20px_0_rgba(0,0,0,0.10)] rounded-lg">
-                            <HeartIcon />
-                        </button>
+                        <FavoriteButton productId={product.id} />
                         {/* Кнопка "Корзина" */}
                         <button type="button" disabled={!product.inStock}
                             className={`flex-1 py-2.5 rounded-lg text-white font-medium transition-colors duration-300 
@@ -181,9 +178,7 @@ export const ProductCard: React.FC<ProductCardProps> = ({ product, view = 'grid'
                             {product.inStock ? 'В наличии' : 'Нет в наличии'}
                         </div>
 
-                        <button type="button" className="w-10 h-10 flex items-center justify-center bg-custom-bg shadow-[1px_1px_20px_0_rgba(0,0,0,0.10)] rounded-lg">
-                            <HeartIcon />
-                        </button>
+                        <FavoriteButton productId={product.id} />
                     </div>
 
                     {/* Кнопка "Корзина" */}

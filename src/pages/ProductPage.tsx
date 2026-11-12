@@ -12,6 +12,7 @@ import { getDiscountPercent } from "../utils/getDiscountPercent";
 import { formatPrice } from "../utils/formatPrice";
 
 import { BackIcon } from "../ui/icons/BackIcon";
+import { FavoriteButton } from "../components/FavoriteButton";
 
 const ProductPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
@@ -20,7 +21,7 @@ const ProductPage: React.FC = () => {
     const [product, setProduct] = useState<ProductItem | null>(null);
     const [loading, setLoading] = useState(true);
     const [selectedColor, setSelectedColor] = useState<ProductColor | null>(null);
-
+ 
     useEffect(() => {
         getProducts().then((data) => {
             const currentProduct = data.find(
@@ -49,6 +50,7 @@ const ProductPage: React.FC = () => {
     }
 
     const discount = getDiscountPercent(product.price, product.oldPrice);
+
     return (
         <motion.div
             className="pb-30"
@@ -91,10 +93,11 @@ const ProductPage: React.FC = () => {
                         {/* Слайдер изображений */}
                         <div className="relative shrink-0 max-w-103">
                             {discount && (
-                                <div className="absolute top-0 right-0 bg-custom-tertiary text-lg px-2 py-1 z-4 rounded-lg">
+                                <div className="absolute top-1 left-1 bg-custom-tertiary text-lg px-2 py-1 z-4 rounded-lg">
                                     -{discount}%
                                 </div>
                             )}
+                           <FavoriteButton productId={product.id} className="absolute top-1 right-1 z-10" />
                             <Swiper
                                 modules={[Pagination]}
                                 pagination={{ clickable: true }}
