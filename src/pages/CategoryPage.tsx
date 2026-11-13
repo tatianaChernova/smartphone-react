@@ -169,7 +169,7 @@ const CategoryPage: React.FC = () => {
                         </div>
                     </div>
 
-                    <div className="flex gap-18.75">
+                    <div className="flex items-start gap-18.75">
                         {/* Фильтры */}
                         <aside className={`
                         fixed top-0 left-0 h-full max-w-full w-full lg:max-w-72 bg-white z-50 p-4
