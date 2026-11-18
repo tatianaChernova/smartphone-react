@@ -1,18 +1,18 @@
 // src/pages/FavoritesPage.tsx
 import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 import type { ProductItem } from "../types/product";
 
 import { getProducts } from "../api/products";
 import { useFavoritesStore } from "../store/favoritesStore";
 
+import { PageTransition } from "../components/PageTransition";
+import { Breadcrumbs } from "../components/Breadcrumbs";
+import { PageHeader } from "../components/PageHeader";
 import { ProductCard } from "../components/product/ProductCard";
-import { BackIcon } from "../ui/icons/BackIcon";
 
 const FavoritesPage: React.FC = () => {
-    const navigate = useNavigate();
     const ids = useFavoritesStore((s) => s.ids);
 
     const [products, setProducts] = useState<ProductItem[]>([]);
@@ -32,35 +32,11 @@ const FavoritesPage: React.FC = () => {
     const favoriteProducts = products.filter((p) => ids.includes(p.id));
 
     return (
-        <motion.div
-            className="pb-30"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{
-                type: "spring",
-                stiffness: 100,
-                damping: 15,
-                mass: 0.8
-            }}
-        >
+        <PageTransition>
             <section>
                 <div className="container">
-                    {/* Хлебные крошки */}
-                    <div className="text-sm text-gray-500 mb-6">
-                        <Link to="/" className="hover:text-gray-700">
-                            Главная
-                        </Link>
-                        {" / "}
-                        <span className="text-black">Избранное</span>
-                    </div>
-
-                    <div className="mb-8 flex items-center gap-5">
-                        <button type="button" onClick={() => navigate(-1)}>
-                            <BackIcon className="w-4 h-4 md:w-5 md:h-7" />
-                        </button>
-                        <h1 className="text-xl md:text-[32px]">Избранное</h1>
-                    </div>
+                    <Breadcrumbs items={[{ label: "Главная", to: "/" }, { label: "Избранное" }]} />
+                    <PageHeader title="Избранное" />
 
                     {favoriteProducts.length === 0 ? (
                         <div className="text-center py-10 text-gray-500">
@@ -78,7 +54,7 @@ const FavoritesPage: React.FC = () => {
                     )}
                 </div>
             </section>
-        </motion.div>
+        </PageTransition>
     );
 };
 

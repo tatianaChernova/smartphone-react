@@ -1,22 +1,11 @@
-import { motion } from "framer-motion";
+import { PageTransition } from "../components/PageTransition";
 import { ReloadIcon } from '../ui/icons/ReloadIcon';
 import notFound from '/images/not-found.webp';
 import { Link } from "react-router-dom";
 
 export default function NotFound() {
     return (
-        <motion.div
-            className="pb-30"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{
-                type: "spring",
-                stiffness: 100,
-                damping: 15,
-                mass: 0.8
-            }}
-        >
+         <PageTransition>
             <section>
                 <div className="container">
                     <div className="flex flex-col items-center justify-center text-center">
@@ -40,6 +29,6 @@ export default function NotFound() {
                     </div>
                 </div>
             </section>
-        </motion.div>
+        </PageTransition>
     );
 }

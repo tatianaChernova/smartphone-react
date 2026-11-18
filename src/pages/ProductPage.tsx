@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { useParams, useNavigate, Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { Pagination } from 'swiper/modules';
-import { motion } from "framer-motion";
 
 import type { ProductColor, ProductItem } from "../types/product";
 
@@ -11,13 +10,14 @@ import { getDiscountPercent } from "../utils/getDiscountPercent";
 
 import { formatPrice } from "../utils/formatPrice";
 
-import { BackIcon } from "../ui/icons/BackIcon";
+import { PageTransition } from "../components/PageTransition";
+import { Breadcrumbs } from "../components/Breadcrumbs";
+import { PageHeader } from "../components/PageHeader";
 import { FavoriteButton } from "../components/FavoriteButton";
 import { AddToCartButton } from "../components/product/AddToCartButton";
 
 const ProductPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-    const navigate = useNavigate();
 
     const [product, setProduct] = useState<ProductItem | null>(null);
     const [loading, setLoading] = useState(true);
@@ -54,41 +54,17 @@ const ProductPage: React.FC = () => {
     const discount = getDiscountPercent(product.price, product.oldPrice);
 
     return (
-        <motion.div
-            className="pb-30"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{
-                type: "spring",
-                stiffness: 100,
-                damping: 15,
-                mass: 0.8
-            }}
-        >
+        <PageTransition>
             <section>
                 <div className="container">
-                    {/* Хлебные крошки */}
-                    <div className="text-sm text-custom-grey mb-6">
-                        <Link to="/" className="hover:text-gray-700">
-                            Главная
-                        </Link>
-                        {" / "}
-                        <Link to="/catalog" className="hover:text-gray-700">
-                            Каталог
-                        </Link>
-                        {" / "}
-                        <span className="text-custom-dark-grey">{product.name}</span>
-                    </div>
+                    <Breadcrumbs
+                        items={[
+                            { label: "Главная", to: "/" },
+                            { label: "Каталог", to: "/catalog" },
+                            { label: product.name },
+                        ]} />
 
-
-                    <div className="mb-8 flex items-center gap-5">
-                        <button type="button" onClick={() => navigate(-1)}>
-                            <BackIcon className="w-4 h-4 md:w-5 md:h-7" />
-                        </button>
-
-                        <span className="text-xl md:text-[32px]">Карточка товара</span>
-                    </div>
+                    <PageHeader title="Карточка товара" as="span" />
 
                     <div className="pb-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[26rem_minmax(0,1fr)_21rem] items-start gap-6 md:gap-10">
                         {/* Слайдер изображений */}
@@ -124,7 +100,7 @@ const ProductPage: React.FC = () => {
                                 {product.name}
                             </h1>
 
-                            {product.colors?.length && (
+                            {!!product.colors?.length && (
                                 <div className="mb-3 flex flex-col gap-4">
                                     <h3 className="text-[16px] md:text-[18px]">Цвет: {selectedColor?.name}</h3>
 
@@ -143,7 +119,7 @@ const ProductPage: React.FC = () => {
 
                             <h3 className="text-[16px] md:text-[18px]">Характеристики:</h3>
 
-                            <dl className="space-y-3 mb-8 text-[14px] md:text-[18px] font-weight-300">
+                            <dl className="space-y-3 mb-8 text-[14px] md:text-[18px] font-light">
 
                                 {product.attributes?.brand && (
                                     <div className="flex items-end gap-2">
@@ -219,7 +195,7 @@ const ProductPage: React.FC = () => {
 
                 </div>
             </section>
-        </motion.div>
+        </PageTransition>
     );
 };
 

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Link } from "react-router-dom";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay } from 'swiper/modules';
-import { motion } from "framer-motion";
+
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -17,6 +17,7 @@ import { getCategories } from "../api/categories";
 import { ChevronLeftIcon } from '../ui/icons/ChevronLeftIcon';
 import { ChevronRightIcon } from '../ui/icons/ChevronRightIcon';
 
+import { PageTransition } from "../components/PageTransition";
 import { ProductCard } from "../components/product/ProductCard";
 
 const Home: React.FC = () => {
@@ -35,18 +36,7 @@ const Home: React.FC = () => {
     }, []);
 
     return (
-        <motion.div
-            className="pb-30"
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -15 }}
-            transition={{
-                type: "spring",
-                stiffness: 100,
-                damping: 15,
-                mass: 0.8
-            }}
-        >
+        <PageTransition>
             {banners?.length > 0 && (
                 <section className="banner">
                     <div className="container">
@@ -213,7 +203,7 @@ const Home: React.FC = () => {
                     </div>
                 </section>
             )}
-        </motion.div>
+        </PageTransition>
     );
 };
 
