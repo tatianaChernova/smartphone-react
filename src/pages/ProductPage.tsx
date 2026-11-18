@@ -1,202 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { Swiper, SwiperSlide } from 'swiper/react';
+// src/pages/ProductPage.tsx
+import React from "react";
 import { useParams } from "react-router-dom";
-import { Pagination } from 'swiper/modules';
 
-import type { ProductColor, ProductItem } from "../types/product";
-
-import { getProducts } from "../api/products";
-import { getDiscountPercent } from "../utils/getDiscountPercent";
-
-import { formatPrice } from "../utils/formatPrice";
-
-import { PageTransition } from "../components/PageTransition";
-import { Breadcrumbs } from "../components/Breadcrumbs";
-import { PageHeader } from "../components/PageHeader";
-import { FavoriteButton } from "../components/FavoriteButton";
-import { AddToCartButton } from "../components/product/AddToCartButton";
+import { useProduct } from "../hooks/useProduct";
+import { ProductDetails } from "../components/product/ProductDetails";
 
 const ProductPage: React.FC = () => {
     const { id } = useParams<{ id: string }>();
-
-    const [product, setProduct] = useState<ProductItem | null>(null);
-    const [loading, setLoading] = useState(true);
-    const [selectedColor, setSelectedColor] = useState<ProductColor | null>(null);
-
-    useEffect(() => {
-        getProducts().then((data) => {
-            const currentProduct = data.find(
-                p => Number(p.id) === Number(id)
-            );
-
-            setProduct(currentProduct || null);
-            setSelectedColor(currentProduct?.colors?.[0] ?? null);
-            setLoading(false);
-        });
-    }, [id]);
+    const { product, loading } = useProduct(id);
 
     if (loading) {
-        return (
-            <div className="container py-10">
-                Загрузка товара...
-            </div>
-        );
+        return <div className="container py-10">Загрузка товара...</div>;
     }
 
     if (!product) {
-        return (
-            <div className="container py-10">
-                Товар не найден
-            </div>
-        );
+        return <div className="container py-10">Товар не найден</div>;
     }
 
-    const discount = getDiscountPercent(product.price, product.oldPrice);
-
-    return (
-        <PageTransition>
-            <section>
-                <div className="container">
-                    <Breadcrumbs
-                        items={[
-                            { label: "Главная", to: "/" },
-                            { label: "Каталог", to: "/catalog" },
-                            { label: product.name },
-                        ]} />
-
-                    <PageHeader title="Карточка товара" as="span" />
-
-                    <div className="pb-28 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-[26rem_minmax(0,1fr)_21rem] items-start gap-6 md:gap-10">
-                        {/* Слайдер изображений */}
-                        <div className="relative min-w-0">
-                            {discount && (
-                                <div className="absolute top-1 left-1 bg-custom-tertiary text-lg px-2 py-1 z-4 rounded-lg">
-                                    -{discount}%
-                                </div>
-                            )}
-                            <FavoriteButton productId={product.id} className="absolute top-1 right-1 z-10" />
-                            <Swiper
-                                modules={[Pagination]}
-                                pagination={{ clickable: true }}
-                                className="h-full product-image-swiper"
-                            >
-                                {product.images.map((img, i) => (
-                                    <SwiperSlide key={i}>
-                                        <div className="h-64 sm:h-80 md:h-96 xl:h-147 flex items-center justify-center">
-                                            <img
-                                                src={img}
-                                                alt={product.name}
-                                                className="object-contain h-full rounded-lg"
-                                            />
-                                        </div>
-                                    </SwiperSlide>
-                                ))}
-                            </Swiper>
-                        </div>
-
-                        {/* Информация */}
-                        <div className="min-w-0 w-full flex flex-col gap-5">
-                            <h1 className="text-xl md:text-3xl">
-                                {product.name}
-                            </h1>
-
-                            {!!product.colors?.length && (
-                                <div className="mb-3 flex flex-col gap-4">
-                                    <h3 className="text-[16px] md:text-[18px]">Цвет: {selectedColor?.name}</h3>
-
-                                    <div className="flex gap-5">
-                                        {product.colors?.map((color) => (
-                                            <button
-                                                key={color.value}
-                                                onClick={() => setSelectedColor(color)}
-                                                className={`w-10 h-10 rounded-lg ${color.value === "#FFFFFF" ? "border border-gray-500" : ""}`}
-                                                style={{ backgroundColor: color.value }}
-                                            />
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
-
-                            <h3 className="text-[16px] md:text-[18px]">Характеристики:</h3>
-
-                            <dl className="space-y-3 mb-8 text-[14px] md:text-[18px] font-light">
-
-                                {product.attributes?.brand && (
-                                    <div className="flex items-end gap-2">
-                                        <dt>Бренд:</dt>
-                                        <span className="flex-1 border-b border-custom-dark-grey"></span>
-                                        <dd>{product.attributes.brand}</dd>
-                                    </div>
-                                )}
-
-                                {product.attributes?.screenSize && (
-                                    <div className="flex items-end gap-2">
-                                        <dt>Экран:</dt>
-                                        <span className="flex-1 border-b border-custom-dark-grey"></span>
-                                        <dd>{product.attributes.screenSize}"</dd>
-                                    </div>
-                                )}
-
-                                {product.attributes?.cores && (
-                                    <div className="flex items-end gap-2">
-                                        <dt>Количество ядер:</dt>
-                                        <span className="flex-1 border-b border-custom-dark-grey"></span>
-                                        <dd>{product.attributes.cores}</dd>
-                                    </div>
-                                )}
-
-                                {product.attributes?.powerSupply && (
-                                    <div className="flex items-end gap-2">
-                                        <dt>Мощность блока питания:</dt>
-                                        <span className="flex-1 border-b border-custom-dark-grey"></span>
-                                        <dd>{product.attributes.powerSupply} Вт</dd>
-                                    </div>
-                                )}
-
-                                {product.attributes?.ram && (
-                                    <div className="flex items-end gap-2">
-                                        <dt>Оперативная память:</dt>
-                                        <span className="flex-1 border-b border-custom-dark-grey"></span>
-                                        <dd>{product.attributes.ram} ГБ</dd>
-                                    </div>
-                                )}
-
-                                {product.attributes?.storage && (
-                                    <div className="flex items-end gap-2">
-                                        <dt>Встроенная память:</dt>
-                                        <span className="flex-1 border-b border-custom-dark-grey"></span>
-                                        <dd>{product.attributes.storage} ГБ</dd>
-                                    </div>
-                                )}
-
-                                {product.attributes?.mainCamera && (
-                                    <div className="flex items-end gap-2">
-                                        <dt>Основная камера:</dt>
-                                        <span className="flex-1 border-b border-custom-dark-grey"></span>
-                                        <dd>{product.attributes.mainCamera} Мп</dd>
-                                    </div>
-                                )}
-                            </dl>
-                        </div>
-
-                        {/* Цена и кнопка */}
-                        <div className="fixed bottom-24 h-26 left-0 z-20 flex items-center justify-between gap-4 p-4 w-full bg-custom-bg border-t border-custom-light md:border-0 md:static md:h-[unset] xl:block md:p-10 md:col-span-2 xl:col-span-1 md:bg-[#E7E7ED] md:rounded-lg md:shadow-none">
-                            <div className="text-xl md:text-2xl mb-0 xl:mb-7 whitespace-nowrap">
-                                {formatPrice(product.price)} ₽
-                            </div>
-
-                            <AddToCartButton
-                                product={product}
-                                colorValue={selectedColor?.value}
-                                className="flex-1 max-w-100 md:w-full"
-                            />
-                        </div>
-                    </div>
-
-                </div>
-            </section>
-        </PageTransition>
-    );
+    return <ProductDetails key={product.id} product={product} />;
 };
 
 export default ProductPage;
