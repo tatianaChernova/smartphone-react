@@ -1,5 +1,4 @@
 // src/components/catalog/CheckboxFilterGroup.tsx
-import React from "react";
 import { Checkbox } from "../Checkbox";
 
 interface Props<T extends string | number> {
