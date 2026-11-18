@@ -9,6 +9,7 @@ export interface CartLine {
     colorValue?: string;
     color?: ProductColor;
     quantity: number;
+    selected: boolean;
 }
 
 export function useCartDetails() {
@@ -30,13 +31,23 @@ export function useCartDetails() {
                 // если товар удалили из JSON, позицию просто не показываем
                 if (!product) return [];
                 const color = product.colors?.find((c) => c.value === item.colorValue);
-                return [{ product, colorValue: item.colorValue, color, quantity: item.quantity }];
+                return [{ product, colorValue: item.colorValue, color, quantity: item.quantity, selected: item.selected === true }];
             }),
         [items, products]
     );
-
+    const selectedLines = lines.filter((l) => l.selected);
     const total = lines.reduce((sum, l) => sum + l.product.price * l.quantity, 0);
-    const count = lines.reduce((sum, l) => sum + l.quantity, 0);
+    const oldTotal = lines.reduce(
+        (sum, l) => sum + (l.product.oldPrice ?? l.product.price) * l.quantity,
+        0
+    );
 
-    return { lines, total, count, loading };
+    return {
+        lines,
+        total,
+        oldTotal,
+        selectedCount: selectedLines.length,
+        allSelected: lines.length > 0 && selectedLines.length === lines.length,
+        loading
+    };
 }

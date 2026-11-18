@@ -1,6 +1,7 @@
 // src/types/cart.ts
 export interface CartItem {
     productId: number;
-    colorValue?: string;   // value цвета, например "#FF0000"
+    colorValue?: string;
     quantity: number;
+    selected?: boolean;   // undefined = выбран (для корзин, сохранённых раньше)
 }

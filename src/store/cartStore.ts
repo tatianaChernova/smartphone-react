@@ -9,6 +9,9 @@ interface CartState {
     remove: (productId: number, colorValue?: string) => void;
     setQuantity: (productId: number, colorValue: string | undefined, quantity: number) => void;
     clear: () => void;
+    toggleSelected: (productId: number, colorValue?: string) => void;
+    setAllSelected: (selected: boolean) => void;
+    removeSelected: () => void;
 }
 
 const isSameLine = (item: CartItem, productId: number, colorValue?: string) =>
@@ -29,7 +32,7 @@ export const useCartStore = create<CartState>()(
                                     ? { ...i, quantity: i.quantity + 1 }
                                     : i
                             )
-                            : [...s.items, { productId, colorValue, quantity: 1 }],
+                            : [...s.items, { productId, colorValue, quantity: 1, selected: false }],
                     };
                 }),
 
@@ -49,6 +52,21 @@ export const useCartStore = create<CartState>()(
                 })),
 
             clear: () => set({ items: [] }),
+
+            toggleSelected: (productId, colorValue) =>
+                set((s) => ({
+                    items: s.items.map((i) =>
+                        isSameLine(i, productId, colorValue)
+                            ? { ...i, selected: !i.selected }
+                            : i
+                    ),
+                })),
+
+            setAllSelected: (selected) =>
+                set((s) => ({ items: s.items.map((i) => ({ ...i, selected })) })),
+
+            removeSelected: () =>
+                set((s) => ({ items: s.items.filter((i) => !i.selected) })),
         }),
         { name: "cart-storage" }
     )
