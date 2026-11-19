@@ -6,6 +6,7 @@ import CategoryPage from "./../pages/CategoryPage";
 import ProductPage from "./../pages/ProductPage";
 import FavoritesPage from "./../pages/FavoritesPage";
 import CartPage from "./../pages/CartPage"; 
+import CheckoutPage from "./../pages/CheckoutPage"; 
 import NotFound from "./../pages/NotFound";
 
 export default function AnimatedRoutes() {
@@ -19,6 +20,7 @@ export default function AnimatedRoutes() {
         <Route path="/product/:id" element={<ProductPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </AnimatePresence>
