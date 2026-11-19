@@ -8,10 +8,10 @@ export function usePickupPoints() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        getPickupPoints().then((data) => {
-            setPoints(data);
-            setLoading(false);
-        });
+        getPickupPoints()
+            .then(setPoints)
+            .catch(console.error)
+            .finally(() => setLoading(false));
     }, []);
 
     return { points, loading };
